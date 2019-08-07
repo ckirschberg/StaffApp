@@ -11,6 +11,7 @@ namespace StaffApp.Models
         }
         public DbSet<StaffEntity> StaffEntities { get; set; }
         public DbSet<Competency> Competencies { get; set; }
+        public DbSet<Ticket> Tickets{ get; set; }
 
     }
 }

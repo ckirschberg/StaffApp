@@ -8,8 +8,8 @@ using StaffApp.Models;
 namespace StaffApp.Migrations
 {
     [DbContext(typeof(StaffAppContext))]
-    [Migration("20190807092436_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190807121624_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,15 +34,42 @@ namespace StaffApp.Migrations
                     b.Property<int>("StaffEntityId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Firstname");
+                    b.Property<string>("Firstname")
+                        .IsRequired();
 
-                    b.Property<string>("Lastname");
+                    b.Property<string>("Lastname")
+                        .IsRequired();
 
                     b.HasKey("StaffEntityId");
 
                     b.ToTable("StaffEntities");
+                });
+
+            modelBuilder.Entity("StaffApp.Models.Ticket", b =>
+                {
+                    b.Property<int>("TicketId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("StaffEntityId");
+
+                    b.HasKey("TicketId");
+
+                    b.HasIndex("StaffEntityId");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("StaffApp.Models.Ticket", b =>
+                {
+                    b.HasOne("StaffApp.Models.StaffEntity", "StaffEntity")
+                        .WithMany("Tickets")
+                        .HasForeignKey("StaffEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
