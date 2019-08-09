@@ -28,6 +28,6 @@ steps:
     zipAfterPublish: True
 - task: AzureRmWebAppDeployment@3
   inputs:
-    azureSubscription: 'StaffAppConnection'
+    azureSubscription: '4d299c68-5572-4785-a71f-d96635f7ca55'
     WebAppName: 'StaffApp'
     Package: $(System.ArtifactsDirectory)/**/*.zip
