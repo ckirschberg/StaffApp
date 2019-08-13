@@ -29,5 +29,5 @@ steps:
 - task: AzureRmWebAppDeployment@3
   inputs:
     azureSubscription: 'StaffAppConnection'
-    WebAppName: 'StaffApp'
+    WebAppName: 'StaffApp2019'
     Package: $(System.ArtifactsDirectory)/**/*.zip
